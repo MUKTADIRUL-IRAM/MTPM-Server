@@ -6,7 +6,7 @@ exports.postUserDataToDataBase = async(req,res)=>{
 
     const {name,email,verifiedEmail} = req.body;
 
-    const filter = {email};//Creating an Object named "filter" has property email e.g filter = {email : email}
+    const filter = {email};//Creating an Object named "filter" that has property email e.g filter = {email : email}
 
     const updatedDoc = {
         $set:{
@@ -27,3 +27,6 @@ exports.postUserDataToDataBase = async(req,res)=>{
     
    }
 };
+
+//During FIRST registration/login: req.user may not exist yet because user creation happens BEFORE JWT verification 
+//sometimes.That's why I removed tenantId:user.tenantId from here

@@ -14,7 +14,11 @@ const userSchema = new mongoose.Schema({
     verifiedEmail:{
         type:String,
         required:true
-    }
+    },
+    // tenantId:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:"WorkSpace" //references your WorkSpace Collection 
+    // }
 
 });
 

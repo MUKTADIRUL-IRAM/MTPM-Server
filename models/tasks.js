@@ -15,8 +15,27 @@ const taskSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    userEmail:{
-      type:String,
+    // userEmail:{
+    //   type:String,
+    //   required:true
+    // },
+    ownerId:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"User",
+      required:true
+    },
+  //   tenantId:{
+  //     type:mongoose.Schema.Types.ObjectId,
+  //     ref:"WorkSpace",
+  //     required:true
+  //  },
+    assignedTo:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
+    }],
+    workSpaceId:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"WorkSpace", //references your WorkSpace Collection
       required:true
     }
 

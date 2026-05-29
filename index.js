@@ -8,7 +8,6 @@ const port = process.env.PORT || 3000;
 const connectionDB = require('./config/db');
 
 
-
 const app = express();
 
 connectionDB();// only once at startup
@@ -31,6 +30,9 @@ app.use('/auth',require('./routes/authRoutes')); //app.use() connects Express ap
 app.use('/project',require('./routes/projectRoutes'));
 app.use('/task',require('./routes/taskRoutes'));
 app.use('/users',require('./routes/usersDataRoutes'));
+app.use('/workSpace',require('./routes/workSpaceRoutes'));
+app.use('/invitation',require('./routes/invitationRoutes'));
+app.use('/notification',require('./routes/notificationRoutes'));
 
 app.get('/',(req,res)=>{
   res.send("Server is working");

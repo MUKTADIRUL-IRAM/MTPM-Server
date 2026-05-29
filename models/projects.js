@@ -9,11 +9,25 @@ const projectSchema = new mongoose.Schema({
         type:String,
         required:true
       },
-      userEmail:{
-        type:String,
+      // userEmail:{
+      //   type:String,
+      //   required:true
+      // },
+      // tenantId:{
+      //   type:mongoose.Schema.Types.ObjectId,
+      //   ref:"WorkSpace", //references your WorkSpace Collection
+      //   required:true
+      // },
+      ownerId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
+      },
+      workSpaceId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"WorkSpace", //references your WorkSpace Collection
         required:true
       }
-      
 
 });
 

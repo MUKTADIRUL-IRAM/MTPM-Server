@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/users');
 
 const verifyToken = (req,res,next)=>{
 
@@ -12,22 +13,31 @@ const verifyToken = (req,res,next)=>{
    //JWT internally checks:Was this token signed using THIS secret key?
    //If:YES → decoded payload returned,NO → error
    
-   jwt.verify(token,process.env.JWT_ACCESS_TOKEN,(err,decoded)=>{
+   jwt.verify(token,process.env.JWT_ACCESS_TOKEN,async(err,decoded)=>{
      
      if(err)
      {
         console.log("Not the correct token : ",err);
-        res.status(401).send({message : "Unauthorized Access"});
+        return res.status(401).send({message : "Unauthorized Access"});
      }
 
      console.log("Token verified successfully : ",decoded);
 
      req.user = decoded;
 
+     const user = await User.findOne({email : req.user.email}); //Use '.select()' to fetch limited data => const user = await User.findOne({email:req.user.email}).select('_id email tenantId');
+
+     if(!user)
+     {
+       return res.status(404).send({message : " User not found "});
+     }
+
+     req.dbUser = user;
+
      next();
      
       
-   })
+   });
 
 };
 
