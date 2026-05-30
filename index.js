@@ -39,7 +39,7 @@ app.get('/',(req,res)=>{
 });
 
 app.listen(port,()=>{
-    console.log("Server is working on 3000");   
+    console.log(`Server is working on ${port}`);   
 });
 
 // Frontend request
