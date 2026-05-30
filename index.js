@@ -13,7 +13,7 @@ const app = express();
 connectionDB();// only once at startup
 
 app.use(cors({
-  origin:['http://localhost:5173'],//This defines who is allowed to access your backend
+  origin:['http://localhost:5173','https://mtpm.pages.dev'],//This defines who is allowed to access your backend
   credentials:true,//This allows cookies / authentication headers
   optionsSuccessStatus:200,//Before sending actual request, browser checks:
                            //“Is this allowed?”
