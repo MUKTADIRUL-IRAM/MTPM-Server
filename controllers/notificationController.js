@@ -6,9 +6,13 @@ exports.getNotifications = async(req,res)=>{
 
         const user = req.dbUser;
 
-        const findNotification = await Notification.find({receiverId:user._id}).sort({createdAt : -1});
+        const findNotification = await Notification.find({receiverId:user._id})
+        .populate('senderId')
+        .populate('workSpaceId')
+        .populate('invitationId')
+        .sort({createdAt : -1});
 
-        console.log("Notifications :",findNotification);
+        console.log("Notifications : ",findNotification);
 
         res.status(200).json(findNotification);
         

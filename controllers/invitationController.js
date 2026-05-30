@@ -66,28 +66,28 @@ exports.saveInvitationDataToDatabase = async(req,res)=>{
 
 };
 
-exports.getInvitation = async(req,res)=>{
+// exports.getInvitation = async(req,res)=>{
 
-  try {
+//   try {
 
-    const user = req.dbUser;
+//     const user = req.dbUser;
 
-    const invitation = await Invitation.find({
-      invitedUser:user._id,
-      status:"pending"
-    }).populate('workSpaceId');
+//     const invitation = await Invitation.find({
+//       invitedUser:user._id,
+//       status:"pending"
+//     }).populate('workSpaceId');
 
-    res.status(200).json(invitation);
+//     res.status(200).json(invitation);
 
-  } catch (error) {
+//   } catch (error) {
 
-    console.log(error);
+//     console.log(error);
 
-    res.status(500).json({error:error.message});
+//     res.status(500).json({error:error.message});
     
-  }
+//   }
 
-};
+// };
 
 exports.acceptInvitation = async(req,res)=>{
 
